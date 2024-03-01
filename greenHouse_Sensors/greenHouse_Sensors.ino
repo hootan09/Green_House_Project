@@ -32,7 +32,7 @@
 
 // Update these with values suitable for your network.
 const char* ssid = "saaeed"; // wifi ssid name
-const char* password = "*******"; // wifi password 
+const char* password = "*****"; // wifi password 
 const char* mqtt_server = "192.168.1.50"; // MQTT broker Name // we are using hivemq public broker. mqtt://test.mosquitto.org
 
 WiFiClient espClient;
@@ -40,7 +40,7 @@ PubSubClient client(espClient);
 DHT dht;
 JsonDocument doc;
 
-#define PUBLISH_INTERVAL 300000 // 5 min     //1200000 // 20 min
+#define PUBLISH_INTERVAL 7200000 // 2 hour
 unsigned long msecLast = 0;
 
 int soilMoistureValue = 0;

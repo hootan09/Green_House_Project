@@ -57,6 +57,31 @@ app.get('/downloaddb', function(req, res){
   res.download(file); // Set disposition and send it.
 });
 
+app.get('/metric/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    let metric = {};
+    if(id == -1){
+      metric = await prisma.metric.findMany({
+        orderBy: {
+          id: 'desc',
+        },
+        take: 1
+      })
+    }else{
+      metric = await prisma.metric.findMany({
+        where: {
+          id: +id,
+        }
+      })
+    }
+    res.json(metric)
+  } catch (error) {
+    console.log(error);
+    res.json({});
+  }
+})
+
 const server = app.listen(app.get('port'), ()=> {
   console.log('listening on port', app.get('port'));
 })

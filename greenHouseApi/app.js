@@ -110,7 +110,7 @@ client.on("connect", () => {
 client.on("message", async(topic, message) => {
   // message is Buffer
   let {humidity,temprature,moisture} = JSON.parse(message.toString());
-  console.log(topic,JSON.parse(message.toString()));
+  // console.log(topic,JSON.parse(message.toString()));
   await prisma.metric.create({
     data: {
       humidity: humidity || 0,

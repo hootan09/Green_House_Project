@@ -32,7 +32,7 @@
 
 // Update these with values suitable for your network.
 const char* ssid = "saaeed"; // wifi ssid name
-const char* password = "vayerless8994"; // wifi password 
+const char* password = "*******"; // wifi password 
 const char* mqtt_server = "192.168.1.50"; // MQTT broker Name // we are using hivemq public broker. mqtt://test.mosquitto.org
 
 WiFiClient espClient;

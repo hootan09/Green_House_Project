@@ -58,4 +58,5 @@ const char* mqtt_server = "192.168.1.50"; # MQTT broker Name
 ## Mobile Application (Expo - React-Native) :
 <p align="center">
 <img src="./needed/app.jpg?raw=true" alt="result" style="width:30%;"/>
+<img src="./needed/charts.jpg?raw=true" alt="result" style="width:30%;"/>
 </p>

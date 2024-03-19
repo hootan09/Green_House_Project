@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
-import background from './assets/images/background.jpg';
+import { ImageBackground, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import background from '../assets/images/background.jpg';
 import { useEffect, useState } from 'react';
 import moment from 'jalali-moment';
+import { Link, router } from 'expo-router';
+import config from '../config/config';
 
-export default function App() {
+export default function Index() {
   
   const [latestRecord, setLatestRecord] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -12,7 +14,7 @@ export default function App() {
   const getLastRecord = async()=> {
     try {
       setRefreshing(true);
-      const req = await fetch('http://192.168.1.50:3000/metric/-1',{method: 'GET'});
+      const req = await fetch(`${config.baseUrl}/metric/-1`,{method: 'GET'});
       const res = await req.json();
       setRefreshing(false);
       if(res.length > 0){
@@ -52,24 +54,26 @@ export default function App() {
           <View style={styles.mainWrapper}>
 
 
-            <View style={[styles.box, {backgroundColor: '#FFF1D6'}]}>
-              <View style={styles.textWrapper}>
-                <Text style={styles.textTitle}>Temp</Text>
-                <Text style={styles.textDescription}>{latestRecord?.temprature}°C</Text>
-              </View>
-            </View>
-            <View style={[styles.box, {backgroundColor: '#FFFAC7'}]}>
+              <Pressable onPress={()=> router.push('/chart/Tempratures')} style={[styles.box, {backgroundColor: '#FFF1D6'}]}>
+                <View style={styles.textWrapper}>
+                  <Text style={styles.textTitle}>Temp</Text>
+                  <Text style={styles.textDescription}>{latestRecord?.temprature}°C</Text>
+                </View>
+              </Pressable>
+
+            <Pressable onPress={()=> router.push('/chart/Humidity')} style={[styles.box, {backgroundColor: '#FFFAC7'}]}>
               <View style={styles.textWrapper}>
                 <Text style={styles.textTitle}>Humidity</Text>
                 <Text style={styles.textDescription}>{latestRecord?.humidity}%</Text>
               </View>
-            </View>
-            <View style={[styles.box, {backgroundColor: '#E4D9D2'}]}>
+            </Pressable>
+
+            <Pressable onPress={()=> router.push('/chart/Moisture')} style={[styles.box, {backgroundColor: '#E4D9D2'}]}>
               <View style={styles.textWrapper}>
                 <Text style={styles.textTitle}>Moisture</Text>
                 <Text style={styles.textDescription}>{latestRecord?.moisture}</Text>
               </View>
-            </View>
+            </Pressable>
 
           </View>
 
